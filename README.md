@@ -8,15 +8,19 @@ The Gemini Vision Assistant is an innovative project that combines speech recogn
 Voice-Activated Object Recognition:
 Users can simply say “What is this?” while sitting in front of their laptop.
 The program captures a quick photo using the laptop’s camera.
+
 Google’s Gemini model analyzes the image and identifies the object.
 Contextual Questions and Comparisons:
 Users can ask follow-up questions about the recognized object.
 For example, “Can I buy this product?” or “How does it compare to similar items?”
+
 The system provides relevant answers based on the context.
 Integration with Generative AI:
 The project leverages Google’s Gemini API, which combines vision and language models.
 It bridges the gap between visual understanding and natural language processing.
-Free to Use:
+
+# Free to Use:
+
 The Gemini Vision Assistant is accessible to everyone at no cost.
 Google’s Gemini model is also freely available, making this project budget-friendly.
 GitHub Repository:
