@@ -70,7 +70,7 @@ def say_hello():
 
 
 def ai(arument = None):
-    os.environ['GOOGLE_API_KEY'] = "AIzaSyCUQJoNEnB-mInBtRnf3ooOhLOUUQMx9d0"
+    os.environ['GOOGLE_API_KEY'] = "YOUR-KEY"
     genai.configure(api_key = os.environ['GOOGLE_API_KEY'])
 
     image = PIL.Image.open('.\captured_image.jpg')
