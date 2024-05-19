@@ -71,7 +71,7 @@ def vision_ai(arument = None):
     text_model=genai.GenerativeModel('gemini-pro')
 
     if check_image_exists():
-        response = vision_model.generate_content([f"here i will be asking you a question and will give u a image but you only have to reply me according to the question asked in text but when i ask you explicitly to tell me in the context of image i have provided so then only u have to reply me in the context of the image provided and whenever the question is unanswerable like in the situations when the image given does'nt match the context of question then u have to answer the question based on the previous image , so there is the question : {arument}",image])
+        response = vision_model.generate_content([f":{arument}",image])
     
     
     response_text=response.text
