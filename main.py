@@ -1,6 +1,5 @@
 import speech_recognition as sr
 import pyttsx3
-import numpy as np
 import pygame
 import pygame.camera
 import os
@@ -23,12 +22,6 @@ def check_image_exists(filename="captured_image.jpg"):
     return os.path.exists(filename)
 
 def delete_image(filename="captured_image.jpg"):
-    """
-    Deletes the specified image file from the current directory.
-
-    Args:
-        filename (str): The name of the image file to delete (default: "image1.jpg").
-    """
     try:
         os.remove(filename)
         print(f"Image '{filename}' has been deleted successfully.")
@@ -69,8 +62,8 @@ def say_hello():
         print("No camera detected on the current device.")
 
 
-def ai(arument = None):
-    os.environ['GOOGLE_API_KEY'] = "YOUR-KEY"
+def vision_ai(arument = None):
+    os.environ['GOOGLE_API_KEY'] = "YOUR API KEY"
     genai.configure(api_key = os.environ['GOOGLE_API_KEY'])
 
     image = PIL.Image.open('.\captured_image.jpg')
@@ -86,6 +79,21 @@ def ai(arument = None):
     if check_image_exists():
         delete_image()
 
+
+    print(response_text)
+    return response_text
+
+def text_ai(arument = None):
+    os.environ['GOOGLE_API_KEY'] = "AIzaSyCUQJoNEnB-mInBtRnf3ooOhLOUUQMx9d0"
+    genai.configure(api_key = os.environ['GOOGLE_API_KEY'])
+
+
+    text_model=genai.GenerativeModel('gemini-pro')
+
+    
+    response = text_model.generate_content(f"{arument}")
+   
+    response_text=response.text
 
     print(response_text)
     return response_text
@@ -108,6 +116,7 @@ def text_to_speech(text):
     # Run the engine
     engine.runAndWait()
 
+vision_list=["what is this","use camera","can u detect","what is there"]
 speachtext=""
 print(speachtext)
 
@@ -117,16 +126,17 @@ def main():
         speachtext=recognized_text
 
         if recognized_text:
-            if recognized_text:
+            if any(char in recognized_text for char in vision_list):
                 say_hello()
                 
-                input_text = ai(recognized_text)
+                input_text = vision_ai(recognized_text)
                 text_to_speech(input_text)
                 print(f"Text converted to speech: {input_text}")
-
-
-
-
+            
+            else:
+                input_text = text_ai(recognized_text)
+                text_to_speech(input_text)
+                print(f"Text converted to speech: {input_text}")
 
 if __name__ == "__main__":
     main()
